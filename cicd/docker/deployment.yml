@@ -1,0 +1,42 @@
+# socialnetwork_setup
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socialnetwork
+  labels:
+    app: socialnetwork
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: socialnetwork
+  template:
+    metadata:
+      labels:
+        app: socialnetwork
+    spec:
+      containers:
+      - name: socialnetwork-container
+        image: $$DOCKER_REPO/socialnetwork:$$SN_ENV-$$SN_VERSION
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: env-secrets
+        resources:
+          limits:
+            cpu: 200m
+            memory: 300Mi
+          requests:
+            cpu: 200m
+            memory: 300Mi
+        volumeMounts:
+        - name: media
+          mountPath: /media
+      volumes:
+         - name: media
+           persistentVolumeClaim:
+             claimName: media-data
+      imagePullSecrets:
+      - name: regcred1
+      restartPolicy: Always
+

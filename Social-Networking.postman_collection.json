@@ -1,0 +1,1245 @@
+{
+	"info": {
+		"_postman_id": "317d3daa-cb52-49ce-ab40-562918e15a6f",
+		"name": "Social-Networking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23548631"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Get the response headers",
+									"const headers = pm.response.headers;",
+									"",
+									"console.log(\"before Authorization Env :\",  pm.collectionVariables.get('authToken'));",
+									"",
+									"// Loop through the headers and print each one",
+									"headers.each((eachHeader, key) => {",
+									"    // console.log(eachHeader)",
+									"    if(eachHeader && eachHeader.key && eachHeader.key === 'Authorization') {",
+									"        console.log(eachHeader)",
+									"        pm.collectionVariables.set(\"authToken\", eachHeader.value);",
+									"    }",
+									"});",
+									"",
+									"console.log(\"after Authorization Env :\",  pm.collectionVariables.get('authToken'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"a1test2\",\n    \"password\": \"PassWord@1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/login/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"a1test1\",\n    \"password\": \"PassWord@1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/login/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"login",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:03:56 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhNmE3MWUyLTc4MTMtNDJjYy05MTUzLWIyNTE2ZDM3YjM1YiIsInVzZXJuYW1lIjoiYTF0ZXN0MSIsImVtYWlsIjoidGVzdDFAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZX0.XiI7PiC2w4FZTbAsJfa9OmD5gYhDbPZSKVY-SM4AMPw"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "POST, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"User logged in successfully\",\n    \"data\": []\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/user/list/?search=user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"list",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "user"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/user/list/?search=user",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"list",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "user"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:50:27 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "619"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 4,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"user_id\": \"f6010646-3162-4188-9cec-301effb51e92\",\n            \"username\": \"a1user6\",\n            \"private_account\": false,\n            \"country\": \"India\",\n            \"following\": 0,\n            \"followers\": 0\n        },\n        {\n            \"user_id\": \"a12424d6-565c-475a-bce2-532b3b8e6e90\",\n            \"username\": \"a1user5\",\n            \"private_account\": false,\n            \"country\": \"India\",\n            \"following\": 0,\n            \"followers\": 0\n        },\n        {\n            \"user_id\": \"99889e11-285c-439b-a05b-fb6735f9d79f\",\n            \"username\": \"a1user4\",\n            \"private_account\": false,\n            \"country\": \"India\",\n            \"following\": 0,\n            \"followers\": 0\n        },\n        {\n            \"user_id\": \"7cbcf413-a641-4ae1-87be-c5bfc068b25e\",\n            \"username\": \"a1user3\",\n            \"private_account\": false,\n            \"country\": \"India\",\n            \"following\": 0,\n            \"followers\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"a1user7\",\n    \"password\": \"PassWord@1\",\n    \"email\": \"user7@gmail.com\",\n    \"phone_code\": \"+91\",\n    \"phone_number\": \"9098909807\",\n    \"country\": \"India\",\n    \"timezone\": \"Asia/Kolkata\",\n    \"bio\": \"test-bio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/signup/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"signup",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"a1user7\",\n    \"password\": \"PassWord@1\",\n    \"email\": \"user7@gmail.com\",\n    \"phone_code\": \"+91\",\n    \"phone_number\": \"9098909807\",\n    \"country\": \"India\",\n    \"timezone\": \"Asia/Kolkata\",\n    \"bio\": \"test-bio\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/signup/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"signup",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:52:29 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "401"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"message\": \"User registered successfully\",\n    \"data\": {\n        \"user_id\": \"406464c3-06e0-42f8-ac29-cb70ed49813f\",\n        \"username\": \"a1user7\",\n        \"password\": \"53f069dda4700da0e42c651c313650e2\",\n        \"email\": \"user7@gmail.com\",\n        \"phone_code\": \"+91\",\n        \"phone_number\": \"9098909807\",\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"private_account\": false,\n        \"country\": \"India\",\n        \"timezone\": \"Asia/Kolkata\",\n        \"created_at\": 1717527149,\n        \"updated_at\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve user details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/user/{{userId}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{userId}}",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Retrieve user details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/user/{{userId}}/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"{{userId}}",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:53:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, PATCH, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "431"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Account retrieved successfully\",\n    \"data\": {\n        \"user_id\": \"2a6a71e2-7813-42cc-9153-b2516d37b35b\",\n        \"username\": \"a1test1\",\n        \"password\": \"53f069dda4700da0e42c651c313650e2\",\n        \"email\": \"test1@gmail.com\",\n        \"phone_code\": \"+91\",\n        \"phone_number\": \"9098909812\",\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"private_account\": false,\n        \"country\": \"India\",\n        \"timezone\": \"Asia/Kolkata\",\n        \"created_at\": 1717512940,\n        \"updated_at\": null,\n        \"following\": 3,\n        \"followers\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update user details",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"a22user\",\n    \"email\": \"a22user@gmail.com\",\n    \"phone_number\": \"+90 4098909822\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/user/{{userId}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{userId}}",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update user details",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"a22user\",\n    \"email\": \"a22user@gmail.com\",\n    \"phone_number\": \"+90 4098909822\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/user/{{userId}}/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"{{userId}}",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:53:28 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, PATCH, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "410"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"User updated successfully\",\n    \"data\": {\n        \"user_id\": \"2a6a71e2-7813-42cc-9153-b2516d37b35b\",\n        \"username\": \"a22user\",\n        \"password\": \"53f069dda4700da0e42c651c313650e2\",\n        \"email\": \"a22user@gmail.com\",\n        \"phone_code\": \"+91\",\n        \"phone_number\": \"+90 4098909822\",\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"private_account\": false,\n        \"country\": \"India\",\n        \"timezone\": \"Asia/Kolkata\",\n        \"created_at\": 1717512940,\n        \"updated_at\": 1717527209\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete user details",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/user/{{userId}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{userId}}",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete user details",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL}}/api/user/{{userId}}/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"{{userId}}",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:53:40 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PUT, PATCH, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"User deleted successfully\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Follow request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"7cbcf413-a641-4ae1-87be-c5bfc068b25e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/follow-user/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"follow-user",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Follow request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"7cbcf413-a641-4ae1-87be-c5bfc068b25e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/follow-user/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"follow-user",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:54:22 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PATCH, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update follow request",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"4e1303f0-61a8-4d4d-b827-8614f8b8ad0f\",\n    \"accepted\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/follow-user/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"follow-user",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update follow request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": \"4e1303f0-61a8-4d4d-b827-8614f8b8ad0f\",\n    \"accepted\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/follow-user/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"follow-user",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:55:17 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, PATCH, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List my connections",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/connections/?type=friend",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"connections",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "friend"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List my connections",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/connections/?type=friend",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"connections",
+										""
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "friend"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:56:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 1,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"user_id\": \"7cbcf413-a641-4ae1-87be-c5bfc068b25e\",\n            \"username\": \"a1user3\",\n            \"private_account\": false,\n            \"country\": \"India\",\n            \"following\": 0,\n            \"followers\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List user connections",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/connections/{{friendId}}/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"connections",
+								"{{friendId}}",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List user connections",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/api/connections/{{friendId}}/",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"api",
+										"connections",
+										"{{friendId}}",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 04 Jun 2024 18:57:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "WSGIServer/0.2 CPython/3.8.10"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept, Cookie"
+								},
+								{
+									"key": "Allow",
+									"value": "GET, POST, HEAD, OPTIONS"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 1,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"user_id\": \"4e1303f0-61a8-4d4d-b827-8614f8b8ad0f\",\n            \"username\": \"a1test2\",\n            \"private_account\": false,\n            \"country\": \"India\",\n            \"following\": 1,\n            \"followers\": 1\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://127.0.0.1:9090",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "friendId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

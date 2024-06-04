@@ -1,0 +1,7 @@
+ARG DOCKER_REPO
+FROM "$DOCKER_REPO"/cnmsenv
+ADD . /social_networking
+WORKDIR /social_networking
+EXPOSE 8000
+USER root
+CMD python manage.py runserver 0.0.0.0:8000 
